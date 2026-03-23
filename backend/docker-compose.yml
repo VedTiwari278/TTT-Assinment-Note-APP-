@@ -1,0 +1,28 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: notes-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: notes-backend
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: development
+      MONGODB_DEV_URL: mongodb://mongo:27017/notesdb
+    ports:
+      - "5000:5000"
+
+volumes:
+  mongo_data:
