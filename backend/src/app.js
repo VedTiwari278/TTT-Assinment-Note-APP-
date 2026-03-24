@@ -23,7 +23,7 @@ if (NODE_ENV === "development") {
 // CORS
 app.use(
   cors({
-    origin: "https://crazynote.netlify.app",
+    origin: FRONTEND_URL,
     credentials: true,
   }),
 );
