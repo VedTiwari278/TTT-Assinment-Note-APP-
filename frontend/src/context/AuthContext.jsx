@@ -9,25 +9,29 @@ export function AuthProvider({ children }) {
     return stored ? JSON.parse(stored) : null;
   });
 
-  const persistUser = (userData) => {
+  const persistAuth = (userData, token) => {
     setUser(userData);
     localStorage.setItem("notes_user", JSON.stringify(userData));
+    if (token) {
+      localStorage.setItem("notes_token", token);
+    }
   };
 
   const clearUser = () => {
     setUser(null);
     localStorage.removeItem("notes_user");
+    localStorage.removeItem("notes_token");
   };
 
   const register = async (payload) => {
     const { data } = await api.post("/auth/register", payload);
-    persistUser(data.data);
+    persistAuth(data.data, data.token);
     return data;
   };
 
   const login = async (payload) => {
     const { data } = await api.post("/auth/login", payload);
-    persistUser(data.data);
+    persistAuth(data.data, data.token);
     return data;
   };
 
