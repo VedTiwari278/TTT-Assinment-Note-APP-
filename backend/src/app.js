@@ -5,7 +5,7 @@ import morgan from "morgan";
 
 import notes from "./routers/notes.js";
 import auth from "./routers/auth.js";
-import { CORS_ORIGINS, NODE_ENV } from "./config/index.js";
+import { NODE_ENV } from "./config/index.js";
 
 const app = express();
 
@@ -21,9 +21,22 @@ if (NODE_ENV === "development") {
 }
 
 // CORS
+const corsOriginsRaw =
+  (NODE_ENV === "production"
+    ? process.env.CORS_ORIGINS_PROD
+    : process.env.CORS_ORIGINS_DEV) ||
+  (NODE_ENV === "production"
+    ? process.env.FRONTEND_URL_PROD
+    : process.env.FRONTEND_URL_DEV) ||
+  "";
+const corsOrigins = corsOriginsRaw
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 app.use(
   cors({
-    origin: CORS_ORIGINS,
+    origin: corsOrigins,
     credentials: true,
   }),
 );

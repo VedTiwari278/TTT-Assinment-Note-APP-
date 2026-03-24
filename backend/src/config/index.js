@@ -1,26 +1,18 @@
 import dotenv from "dotenv";
 
 dotenv.config();
-
-const requireEnv = (key) => {
-  const value = process.env[key];
-
-  if (!value) {
-    throw new Error(`Missing required env variable: ${key}`);
-  }
-
-  return value;
-};
-
-export const PORT = requireEnv("PORT");
-export const NODE_ENV = requireEnv("NODE_ENV");
-export const JWT_SECRET = requireEnv("JWT_SECRET");
-export const FRONTEND_URL = requireEnv("FRONTEND_URL");
-export const MONGO_URI = requireEnv("MONGO_URL");
-
-const corsOriginsRaw = process.env.CORS_ORIGINS || FRONTEND_URL;
-
-export const CORS_ORIGINS = corsOriginsRaw
-  .split(",")
-  .map((origin) => origin.trim())
-  .filter(Boolean);
+export const NODE_ENV = process.env.NODE_ENV || "development";
+export const PORT =
+  NODE_ENV === "production" ? process.env.PORT_PROD : process.env.PORT_DEV;
+export const JWT_SECRET =
+  NODE_ENV === "production"
+    ? process.env.JWT_SECRET_PROD
+    : process.env.JWT_SECRET_DEV;
+export const FRONTEND_URL =
+  NODE_ENV === "production"
+    ? process.env.FRONTEND_URL_PROD
+    : process.env.FRONTEND_URL_DEV;
+export const MONGO_URI =
+  NODE_ENV === "production"
+    ? process.env.MONGO_URL_PROD
+    : process.env.MONGO_URL_DEV;
