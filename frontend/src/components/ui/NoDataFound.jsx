@@ -1,4 +1,4 @@
-function NoDataFound({
+﻿function NoDataFound({
   title = "No notes found",
   subtitle = "Try creating a new note or adjusting your search.",
 }) {
@@ -12,3 +12,4 @@ function NoDataFound({
 }
 
 export default NoDataFound;
+

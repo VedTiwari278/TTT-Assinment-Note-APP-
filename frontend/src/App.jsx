@@ -7,7 +7,8 @@ import Overview from "./pages/Overview";
 import NoteOverviewPage from "./pages/NoteOverviewPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
-import DashboardLayout from "./layouts/DashboardLayout";
+// import DashboardLayout from "./layouts/DashboardLayout";
+import DashboardLayout from "./layouts/DashboardLayout.jsx";
 
 function App() {
   const { user } = useAuth();
@@ -15,8 +16,16 @@ function App() {
   return (
     <div className="min-h-screen text-black">
       <Routes>
-        <Route path="/login" element={user ? <Navigate to="/dashboard" replace /> : <LoginPage />} />
-        <Route path="/register" element={user ? <Navigate to="/dashboard" replace /> : <RegisterPage />} />
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/dashboard" replace /> : <LoginPage />}
+        />
+        <Route
+          path="/register"
+          element={
+            user ? <Navigate to="/dashboard" replace /> : <RegisterPage />
+          }
+        />
         <Route
           path="/dashboard"
           element={
@@ -31,13 +40,17 @@ function App() {
           <Route path="notes/:id/edit" element={<NoteEditorPage />} />
           <Route path="notes/:id/overview" element={<NoteOverviewPage />} />
         </Route>
-        <Route path="/" element={<Navigate to={user ? "/dashboard" : "/login"} replace />} />
-        <Route path="*" element={<Navigate to={user ? "/dashboard" : "/login"} replace />} />
+        <Route
+          path="/"
+          element={<Navigate to={user ? "/dashboard" : "/login"} replace />}
+        />
+        <Route
+          path="*"
+          element={<Navigate to={user ? "/dashboard" : "/login"} replace />}
+        />
       </Routes>
     </div>
   );
 }
 
 export default App;
-
-

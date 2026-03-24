@@ -1,4 +1,4 @@
-import { Link, Outlet, useNavigate } from "react-router-dom";
+﻿import { Link, Outlet, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext";
 import Button from "../components/ui/Button";
@@ -21,7 +21,7 @@ function DashboardLayout() {
             <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl">My Notes</h1>
             <p className="text-sm text-gray-500">
               <span className="block truncate sm:inline">{user?.name}</span>
-              <span className="hidden sm:inline"> � </span>
+              <span className="hidden sm:inline"> • </span>
               <span className="block truncate sm:inline">{user?.email}</span>
             </p>
           </div>
@@ -46,3 +46,5 @@ function DashboardLayout() {
 }
 
 export default DashboardLayout;
+
+

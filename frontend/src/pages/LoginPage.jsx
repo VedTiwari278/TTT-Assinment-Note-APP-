@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+﻿import { useNavigate, Link } from "react-router-dom";
 import { useLoginMutation } from "../hooks/auth.hooks";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -98,3 +98,4 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
