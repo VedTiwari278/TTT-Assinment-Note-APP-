@@ -25,8 +25,8 @@ app.use(
   }),
 );
 
-app.use("/", (req, res) => {
-  res.send({ message: "Crone Job Started", status: 200, success: true });
+app.get("/", (req, res) => {
+  res.send({ message: "Cron Job Started", status: 200, success: true });
 });
 app.use("/api/v1/auth", auth);
 app.use("/api/v1/notes", notes);
