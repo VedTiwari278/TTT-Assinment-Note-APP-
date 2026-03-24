@@ -35,10 +35,10 @@ export const getAllNotesService = async ({
 
 export const updateNoteService = async (id, userId, data) => {
   const payload = Object.fromEntries(
-    Object.entries(data).filter(([, value]) => value !== undefined)
+    Object.entries(data).filter(([, value]) => value !== undefined),
   );
 
-  return await Notes.findOneAndUpdate({ _id: id, user: userId }, payload, {
+  return await Notes.findByIdAndUpdate({ _id: id, user: userId }, payload, {
     new: true,
   });
 };
