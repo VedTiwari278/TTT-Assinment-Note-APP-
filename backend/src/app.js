@@ -13,30 +13,15 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// 🔥 morgan logger
 if (NODE_ENV === "development") {
   app.use(morgan("dev")); // short logs
 } else {
   app.use(morgan("combined")); // detailed logs (production)
 }
 
-// CORS
-const corsOriginsRaw =
-  (NODE_ENV === "production"
-    ? process.env.CORS_ORIGINS_PROD
-    : process.env.CORS_ORIGINS_DEV) ||
-  (NODE_ENV === "production"
-    ? process.env.FRONTEND_URL_PROD
-    : process.env.FRONTEND_URL_DEV) ||
-  "";
-const corsOrigins = corsOriginsRaw
-  .split(",")
-  .map((origin) => origin.trim())
-  .filter(Boolean);
-
 app.use(
   cors({
-    origin: corsOrigins,
+    origin: ["https://crazynotes.netlify.app", "http://localhost:5000"],
     credentials: true,
   }),
 );
