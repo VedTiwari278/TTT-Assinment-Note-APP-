@@ -1,17 +1,16 @@
-import Button from "./ui/Button";
-import { FiSearch, FiX } from "react-icons/fi";
+import { FiX } from "react-icons/fi";
 
 function SearchBar({ value, onChange, onReset }) {
   return (
-    <div className="w-full flex justify-center">
-      <div className="w-full max-w-lg flex items-center">
+    <div className="flex w-full justify-center">
+      <div className="flex w-full max-w-lg items-center">
         <div className="relative flex-1">
           <input
             type="text"
             placeholder="Search"
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="w-full px-4 py-2 pr-10 text-sm border border-gray-300 rounded-full outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-full border border-gray-300 px-4 py-2 pr-20 text-sm outline-none focus:ring-2 focus:ring-blue-500 sm:pr-10"
           />
 
           {value && (

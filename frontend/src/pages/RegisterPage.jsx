@@ -19,19 +19,17 @@ function RegisterPage() {
       await registerMutation.mutateAsync(data);
       toast.success("Account created");
       navigate("/dashboard");
-    } catch (err) {}
+    } catch (_err) {}
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <main className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-8">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-md bg-white border border-gray-200 rounded-2xl shadow-md p-7 space-y-5"
+        className="w-full max-w-md space-y-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-md sm:p-7"
       >
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">
-            Create account
-          </h1>
+          <h1 className="text-2xl font-semibold text-gray-900">Create account</h1>
           <p className="text-sm text-gray-500">Start organizing your notes</p>
         </div>
 
@@ -42,10 +40,10 @@ function RegisterPage() {
             {...register("name", {
               required: "Name is required",
             })}
-            className="w-full border border-gray-300 px-4 py-2.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.name && (
-            <p className="text-xs text-red-500 mt-1">{errors.name.message}</p>
+            <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
           )}
         </div>
 
@@ -60,10 +58,10 @@ function RegisterPage() {
                 message: "Invalid email",
               },
             })}
-            className="w-full border border-gray-300 px-4 py-2.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.email && (
-            <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>
+            <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
           )}
         </div>
 
@@ -78,19 +76,16 @@ function RegisterPage() {
                 message: "Minimum 6 characters",
               },
             })}
-            className="w-full border border-gray-300 px-4 py-2.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.password && (
-            <p className="text-xs text-red-500 mt-1">
-              {errors.password.message}
-            </p>
+            <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>
           )}
         </div>
 
         {registerMutation.isError && (
-          <p className="text-sm text-red-500 bg-red-50 border border-red-200 px-3 py-2 rounded-lg">
-            {registerMutation.error?.response?.data?.message ||
-              "Register failed"}
+          <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-500">
+            {registerMutation.error?.response?.data?.message || "Register failed"}
           </p>
         )}
 
@@ -102,12 +97,9 @@ function RegisterPage() {
           {registerMutation.isPending ? "Creating..." : "Register"}
         </Button>
 
-        <p className="text-sm text-gray-500 text-center">
+        <p className="text-center text-sm text-gray-500">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-blue-600 font-medium hover:underline"
-          >
+          <Link to="/login" className="font-medium text-blue-600 hover:underline">
             Login
           </Link>
         </p>

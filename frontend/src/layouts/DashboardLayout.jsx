@@ -15,16 +15,18 @@ function DashboardLayout() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <header className="border-b border-gray-200 bg-white px-4 py-6">
-        <div className="mx-auto flex max-w-6xl items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-semibold text-gray-900">My Notes</h1>
+      <header className="border-b border-gray-200 bg-white px-4 py-4 sm:py-6">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="min-w-0">
+            <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl">My Notes</h1>
             <p className="text-sm text-gray-500">
-              {user?.name} â€¢ {user?.email}
+              <span className="block truncate sm:inline">{user?.name}</span>
+              <span className="hidden sm:inline"> • </span>
+              <span className="block truncate sm:inline">{user?.email}</span>
             </p>
           </div>
 
-          <nav className="flex items-center gap-2">
+          <nav className="flex flex-wrap items-center gap-2">
             <Link to="/dashboard/overview">
               <Button variant="secondary">Overview</Button>
             </Link>

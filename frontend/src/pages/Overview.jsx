@@ -47,11 +47,11 @@ function Overview() {
   }
 
   return (
-    <main className="px-4 py-8">
+    <main className="px-4 py-6 sm:py-8">
       <div className="mx-auto max-w-6xl space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-3xl font-semibold text-gray-900">Notes Overview</h1>
+            <h1 className="text-2xl font-semibold text-gray-900 sm:text-3xl">Notes Overview</h1>
             <p className="text-sm text-gray-500">Quick insight into your notes activity.</p>
           </div>
           <Link

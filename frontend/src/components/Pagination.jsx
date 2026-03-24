@@ -30,23 +30,21 @@ function Pagination({
 
   return (
     <div className="mt-6 flex justify-center">
-      <div className="flex items-center gap-1 text-sm">
-        {/* Prev */}
+      <div className="flex flex-wrap items-center justify-center gap-1 text-sm">
         <Button
           onClick={onPrev}
           disabled={page <= 1 || isLoading}
-          className="px-3 py-1 text-gray-600 hover:text-black disabled:opacity-40"
+          className="px-2.5 py-1 text-xs text-gray-600 hover:text-black disabled:opacity-40 sm:px-3 sm:text-sm"
         >
           Prev
         </Button>
 
-        {/* Numbers */}
         {pages.map((p) => (
           <Button
             key={p}
             onClick={() => onPageChange(p)}
             disabled={isLoading}
-            className={`px-3 py-1 rounded-md transition
+            className={`rounded-md px-2.5 py-1 text-xs transition sm:px-3 sm:text-sm
               ${
                 p === page
                   ? "text-blue-600 font-medium"
@@ -57,11 +55,10 @@ function Pagination({
           </Button>
         ))}
 
-        {/* Next */}
         <Button
           onClick={onNext}
           disabled={page >= totalPages || isLoading}
-          className="px-3 py-1 text-gray-600 hover:text-black disabled:opacity-40"
+          className="px-2.5 py-1 text-xs text-gray-600 hover:text-black disabled:opacity-40 sm:px-3 sm:text-sm"
         >
           Next
         </Button>

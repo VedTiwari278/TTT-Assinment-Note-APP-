@@ -23,10 +23,10 @@ function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <main className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-8">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-md bg-white border border-gray-200 rounded-2xl shadow-md p-7 space-y-5"
+        className="w-full max-w-md space-y-5 rounded-2xl border border-gray-200 bg-white p-5 shadow-md sm:p-7"
       >
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">Welcome back</h1>
@@ -44,10 +44,10 @@ function LoginPage() {
                 message: "Invalid email",
               },
             })}
-            className="w-full border border-gray-300 px-4 py-2.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.email && (
-            <p className="text-xs text-red-500 mt-1">{errors.email.message}</p>
+            <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
           )}
         </div>
 
@@ -62,17 +62,15 @@ function LoginPage() {
                 message: "Minimum 6 characters",
               },
             })}
-            className="w-full border border-gray-300 px-4 py-2.5 rounded-lg text-sm outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-blue-500"
           />
           {errors.password && (
-            <p className="text-xs text-red-500 mt-1">
-              {errors.password.message}
-            </p>
+            <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>
           )}
         </div>
 
         {loginMutation.isError && (
-          <p className="text-sm text-red-500 bg-red-50 border border-red-200 px-3 py-2 rounded-lg">
+          <p className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-500">
             {loginMutation.error?.response?.data?.message || "Login failed"}
           </p>
         )}
@@ -85,11 +83,11 @@ function LoginPage() {
           {loginMutation.isPending ? "Logging in..." : "Login"}
         </Button>
 
-        <p className="text-sm text-gray-500 text-center">
-          Don’t have an account?{" "}
+        <p className="text-center text-sm text-gray-500">
+          Don't have an account?{" "}
           <Link
             to="/register"
-            className="text-blue-600 font-medium hover:underline"
+            className="font-medium text-blue-600 hover:underline"
           >
             Sign up
           </Link>

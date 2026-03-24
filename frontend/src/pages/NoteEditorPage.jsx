@@ -61,9 +61,9 @@ function NoteEditorPage() {
   }
 
   return (
-    <main className="px-4 py-8">
+    <main className="px-4 py-6 sm:py-8">
       <div className="max-w-2xl mx-auto space-y-6">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-semibold text-gray-900">
               {isEditMode ? "Edit Note" : "Create Note"}

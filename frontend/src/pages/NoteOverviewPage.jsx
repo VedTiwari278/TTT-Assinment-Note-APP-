@@ -51,14 +51,14 @@ function NoteOverviewPage() {
   const updated = note.updatedAt ? new Date(note.updatedAt).toLocaleString() : "-";
 
   return (
-    <main className="px-4 py-8">
+    <main className="px-4 py-6 sm:py-8">
       <div className="mx-auto max-w-4xl space-y-5">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h1 className="text-2xl font-semibold text-gray-900">Note Overview</h1>
-            <p className="text-sm text-gray-500">{note.title}</p>
+            <p className="line-clamp-2 text-sm text-gray-500">{note.title}</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Link to={`/dashboard/notes/${note._id}/edit`}>
               <Button>Edit Note</Button>
             </Link>
@@ -77,7 +77,7 @@ function NoteOverviewPage() {
 
         <div className="rounded-xl border border-gray-200 bg-white p-5">
           <p className="mb-3 text-sm font-medium text-gray-700">Body Preview</p>
-          <div className="prose max-w-none text-gray-700">
+          <div className="prose max-w-none break-words text-gray-700">
             <ReactMarkdown>{note.body}</ReactMarkdown>
           </div>
           <p className="mt-4 text-sm text-gray-500">Total Characters: {chars}</p>
