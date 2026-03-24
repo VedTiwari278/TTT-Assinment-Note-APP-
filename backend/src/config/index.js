@@ -2,16 +2,25 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const PORT = process.env.PORT || 5000;
-export const NODE_ENV = process.env.NODE_ENV || "development";
+const requireEnv = (key) => {
+  const value = process.env[key];
 
-export const JWT_SECRET = process.env.JWT_SECRET || "change_this_secret";
-export const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
+  if (!value) {
+    throw new Error(`Missing required env variable: ${key}`);
+  }
 
-const resolvedMongoUri = process.env.MONGO_URL;
+  return value;
+};
 
-if (!resolvedMongoUri) {
-  throw new Error("MongoDB URI missing. Set MONGO_URL.");
-}
+export const PORT = requireEnv("PORT");
+export const NODE_ENV = requireEnv("NODE_ENV");
+export const JWT_SECRET = requireEnv("JWT_SECRET");
+export const FRONTEND_URL = requireEnv("FRONTEND_URL");
+export const MONGO_URI = requireEnv("MONGO_URL");
 
-export const MONGO_URI = resolvedMongoUri;
+const corsOriginsRaw = process.env.CORS_ORIGINS || FRONTEND_URL;
+
+export const CORS_ORIGINS = corsOriginsRaw
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);

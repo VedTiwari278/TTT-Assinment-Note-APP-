@@ -5,7 +5,7 @@ import morgan from "morgan";
 
 import notes from "./routers/notes.js";
 import auth from "./routers/auth.js";
-import { FRONTEND_URL, NODE_ENV } from "./config/index.js";
+import { CORS_ORIGINS, NODE_ENV } from "./config/index.js";
 
 const app = express();
 
@@ -23,7 +23,7 @@ if (NODE_ENV === "development") {
 // CORS
 app.use(
   cors({
-    origin: "https://crazynote.netlify.app",
+    origin: CORS_ORIGINS,
     credentials: true,
   }),
 );

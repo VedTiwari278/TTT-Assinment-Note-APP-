@@ -3,12 +3,19 @@ import { JWT_SECRET } from "../config/index.js";
 
 export const verifyToken = (req, res, next) => {
   try {
-    const token = req.cookies?.token;
+    const cookieToken = req.cookies?.token;
+    const authHeader = req.headers.authorization || req.headers.Authorization;
+    const bearerToken =
+      typeof authHeader === "string" && authHeader.startsWith("Bearer ")
+        ? authHeader.slice(7).trim()
+        : null;
+
+    const token = cookieToken || bearerToken;
 
     if (!token) {
       return res.status(401).json({
         success: false,
-        message: "Unauthorized: Token cookie missing",
+        message: "Unauthorized: Token missing",
       });
     }
 
